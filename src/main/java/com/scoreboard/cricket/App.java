@@ -27,22 +27,37 @@ public class App {
 					+ match.getT2());
 			i++;
 		}
+		System.out.println("q) Quit");
 		Scanner in = new Scanner(System.in);
 		while (true) {
 			System.out
 					.println("Please enter the number of the match you would like view: ");
 
-			int selection = in.nextInt();
+			if (in.hasNextInt()) {
+				int selection = in.nextInt();
 
-			System.out.println("Retrieving match scorecard...");
-			Match match = matchProvider.retrieveMatch(matchMap.get(selection)
-					.getId());
+				System.out.println("Retrieving match scorecard...");
+				if (matchMap.containsKey(selection)) {
+					Match match = matchProvider.retrieveMatch(matchMap.get(
+							selection).getId());
 
-			logger.debug("Output from GSON....");
-			System.out.println(match.getId());
-			System.out.println(match.getDe());
-			System.out.println(match.getSi());
-
+					logger.debug("Output from GSON....");
+					System.out.println(match.getId());
+					System.out.println(match.getDe());
+					System.out.println(match.getSi());
+				} else {
+					System.out.println("Invalid match number.");
+				}
+			} else {
+				char c = in.next().charAt(0);
+				logger.debug("Character read in from input was: " + c);
+				if (c == 'q') {
+					System.out.println("Quitting program.");
+					break;
+				} else {
+					System.out.println("Invalid match number.");
+				}
+			}
 		}
 	}
 }
