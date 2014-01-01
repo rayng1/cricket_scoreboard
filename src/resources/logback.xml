@@ -6,7 +6,7 @@
     </encoder>
   </appender>
 
-  <logger name="com.scoreboard.cricket" level="DEBUG">
+  <logger name="com.scoreboard.cricket" level="INFO">
   </logger>
   
   <root level="ERROR">
